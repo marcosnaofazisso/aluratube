@@ -1,0 +1,72 @@
+{
+    "name": "Marcos Vinicius Ferreira",
+    "job": "Full Stack Developer",
+    "github": "marcosnaofazisso",
+    "playlists": {
+        "Tecnologia": [
+            {
+                "title": "3 dicas para quem está começando!!",
+                "url": "https://www.youtube.com/watch?v=fBhQBUucpuQ",
+                "thumb": "https://img.youtube.com/vi/fBhQBUucpuQ/hqdefault.jpg",
+                "channel": "Jamilton Damasceno"
+            },
+            {
+                "title": "O Primeiro Vídeo Que Gostaria De Ter Assistido Sobre Como Controlar a Ansiedade",
+                "url": "https://www.youtube.com/watch?v=dZJbORri0ro",
+                "thumb": "https://img.youtube.com/vi/dZJbORri0ro/hqdefault.jpg",
+                "channel": "Filipe Deschamps"
+            },
+            {
+                "title": "Arquitetura de sistemas com Fabio Akita | #HipstersPontoTube",
+                "url": "https://www.youtube.com/watch?v=oedWxgAZc2A",
+                "thumb": "https://img.youtube.com/vi/oedWxgAZc2A/hqdefault.jpg",
+                "channel": "Alura"
+            },
+            {
+                "title": "Como se tornar um DESENVOLVEDOR MOBILE? (Roadmap - PASSO A PASSO para iniciantes)",
+                "url": "https://www.youtube.com/watch?v=X-XfVvd41O8",
+                "thumb": "https://img.youtube.com/vi/X-XfVvd41O8/hqdefault.jpg",
+                "channel": "Attekita Dev"
+            },
+            {
+                "title": "O QUE SÃO FRAMEWORKS E BIBLIOTECAS? QUAIS AS DIFERENÇAS?",
+                "url": "https://www.youtube.com/watch?v=dp0zB4n3MUs",
+                "thumb": "https://img.youtube.com/vi/dp0zB4n3MUs/hqdefault.jpg",
+                "channel": "Rafaella Ballerini"
+            }
+        ],
+        "Anime": [
+            {
+                "title": "UNITED STATES OF SMASH! | My Hero Academia",
+                "url": "https://www.youtube.com/watch?v=CDW2ReQZOQU",
+                "thumb": "https://img.youtube.com/vi/CDW2ReQZOQU/hqdefault.jpg",
+                "channel": "Crunchyroll"
+            },
+            {
+                "title": "Fullmetal Alchemist - Edward Elric",
+                "url": "https://www.youtube.com/watch?v=uT6BT6_Od88",
+                "thumb": "https://img.youtube.com/vi/uT6BT6_Od88/hqdefault.jpg",
+                "channel": "Anime no Kokoro"
+            }
+            ,
+            {
+                "title": "O GRANDE SEGREDO DE ONE PIECE FOI REVELADO! EU ESTAVA CERTO!!! One Piece 1065",
+                "url": "https://www.youtube.com/watch?v=GqCV_FSQcNg",
+                "thumb": "https://img.youtube.com/vi/GqCV_FSQcNg/hqdefault.jpg",
+                "channel": "Cronosfera"
+            },
+            {
+                "title": "ROCK LEE vs GAARA - luta completa",
+                "url": "https://www.youtube.com/watch?v=u7V9Jw5oufQ",
+                "thumb": "https://img.youtube.com/vi/u7V9Jw5oufQ/hqdefault.jpg",
+                "channel": "Naruto"
+            },
+            {
+                "title": "Tengen Uzui Epic Moments | Demon Slayer Season 2",
+                "url": "https://www.youtube.com/watch?v=Bv5d8s26XU4",
+                "thumb": "https://img.youtube.com/vi/Bv5d8s26XU4/hqdefault.jpg",
+                "channel": "Demon Slayer"
+            }
+        ]
+    }
+}
