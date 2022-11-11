@@ -42,7 +42,7 @@ export default function RegisterVideo() {
     const [formVisivel, setFormVisivel] = React.useState(false);
 
     function getThumbnail(url) {
-        if (url.length > 43) {
+        if (url.length >= 43) {
             let videoId = ''
             for (let i = 32; i < 43; i++) {
                 videoId += url[i]
