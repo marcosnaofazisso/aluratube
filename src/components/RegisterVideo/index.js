@@ -1,5 +1,11 @@
 import React from "react";
 import { StyledRegisterVideo } from "./styles";
+import { createClient } from "@supabase/supabase-js";
+
+const PROJECT_URL = "https://zwsndgmbsdgjescqjpjh.supabase.co"
+const PUBLIC_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3c25kZ21ic2RnamVzY3FqcGpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgxODI1MzAsImV4cCI6MTk4Mzc1ODUzMH0.BXUkUctSuQn_Sujps3cEXJK4TRiO6ZilNQwl1DXWsJ8"
+const supabase = createClient(PROJECT_URL, PUBLIC_KEY);
+
 
 function useForm(props) {
     const [values, setValues] = React.useState(props.initialValues);
@@ -10,7 +16,6 @@ function useForm(props) {
         loading,
         setLoading,
         handleChange: (evento) => {
-            console.log(`${evento.target.name}: `, evento.target.value);
             const value = evento.target.value;
             const name = evento.target.name
             if (name == "url") setLoading(true)
@@ -30,8 +35,9 @@ function useForm(props) {
 }
 
 export default function RegisterVideo() {
+
     const formCadastro = useForm({
-        initialValues: { titulo: "Arquitetura de Sistemas", url: "", thumbImage: "" }
+        initialValues: { titulo: "", url: "", thumbImage: "" }
     });
     const [formVisivel, setFormVisivel] = React.useState(false);
 
@@ -57,6 +63,7 @@ export default function RegisterVideo() {
         return () => clearTimeout(delay)
     }, [formCadastro.values.url])
 
+
     return (
         <StyledRegisterVideo>
             <button className="add-video" onClick={() => setFormVisivel(true)}>
@@ -67,7 +74,23 @@ export default function RegisterVideo() {
                 ? (
                     <form onSubmit={(evento) => {
                         evento.preventDefault();
-                        console.log(formCadastro.values);
+
+                        const payload = {
+                            titulo: formCadastro.values.titulo,
+                            url: formCadastro.values.url,
+                            thumb: formCadastro.values.thumbImage,
+                        }
+                        console.log("PAYLOAD ===>>>", payload);
+
+                        // Contrato entre o nosso Front e o BackEnd
+                        supabase.from("videos").insert(payload)
+                            .then((response) => {
+                                console.log("response", response);
+                            })
+                            .catch((err) => {
+                                console.log("Erro: ", err);
+                            })
+
                         setFormVisivel(false);
                         formCadastro.clearForm();
                     }}>

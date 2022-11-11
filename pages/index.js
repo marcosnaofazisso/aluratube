@@ -3,11 +3,48 @@ import config from "../config.json";
 import styled from "styled-components";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
+import { videoService } from "../src/services/videoService";
+import { createClient } from "@supabase/supabase-js";
+
+
+const PROJECT_URL = "https://zwsndgmbsdgjescqjpjh.supabase.co"
+const PUBLIC_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3c25kZ21ic2RnamVzY3FqcGpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgxODI1MzAsImV4cCI6MTk4Mzc1ODUzMH0.BXUkUctSuQn_Sujps3cEXJK4TRiO6ZilNQwl1DXWsJ8"
+const supabase = createClient(PROJECT_URL, PUBLIC_KEY);
 
 
 export default function HomePage() {
 
+    const service = videoService();
+
     const [valorDoFiltro, setValorDoFiltro] = React.useState("");
+    const [playlists, setPlaylists] = React.useState({});
+    const [reloading, setReloading] = React.useState(false);
+
+
+    React.useEffect(() => {
+        service
+            .getAllVideos()
+            .then((dados) => {
+                console.log("Data: ", dados.data);
+                const novasPlaylists = {};
+                dados.data.forEach((video) => {
+                    if (!novasPlaylists[video.playlist]) novasPlaylists[video.playlist] = [];
+                    novasPlaylists[video.playlist] = [
+                        video,
+                        ...novasPlaylists[video.playlist],
+                    ];
+                });
+
+                setPlaylists(novasPlaylists);
+            });
+    }, []);
+
+    supabase
+        .channel('*')
+        .on('postgres_changes', { event: '*', schema: '*' }, payload => {
+            window.location.reload(false);
+        })
+        .subscribe()
 
     return (
         <>
@@ -18,7 +55,7 @@ export default function HomePage() {
             }}>
                 <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
                 <Header />
-                <Timeline searchValue={valorDoFiltro} playlists={config.playlists} />
+                <Timeline searchValue={valorDoFiltro} playlists={playlists} />
             </div>
         </>
     );
@@ -88,7 +125,7 @@ function Timeline({ searchValue, ...props }) {
                         <div>
                             {videos
                                 .filter((video) => {
-                                    const titleNormalized = video.title.toLowerCase();
+                                    const titleNormalized = video.titulo.toLowerCase();
                                     const searchValueNormalized = searchValue.toLowerCase();
                                     return titleNormalized.includes(searchValueNormalized);
                                 })
@@ -97,8 +134,10 @@ function Timeline({ searchValue, ...props }) {
                                         <a key={video.url} href={video.url}>
                                             <img src={video.thumb} />
                                             <span>
-                                                {video.title}
+                                                {video.titulo}
                                             </span>
+                                            <span style={{ fontSize: 12, color: '#aaa' }}>{video.canal}</span>
+                                            <span style={{ fontSize: 12, color: '#aaa' }}>99mil visualizações</span>
                                         </a>
                                     )
                                 })}
